@@ -13,8 +13,28 @@ namespace CurrencyExchangeApi.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult DisplayForm()
+        {
+            return View("Display");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ShowUser(IFormCollection form)
+        {
+            CurrencyTransactionModel curTr = new();
+
+            string From = form["txtFrom"];
+            string To = form["txtTo"];
+            int Amount = Convert.ToInt32(form["txtAmount"]);
+
+            //ResponseHandler responseHandler = new();
+            //var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);
+
             return View();
         }
 
