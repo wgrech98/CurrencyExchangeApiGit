@@ -37,7 +37,7 @@ namespace CurrencyExchangeApi.Controllers
             var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);
 
             GetLatestCurrenciesResponseModel curTr = new();
-            curTr = JsonConvert.DeserializeObject<GetLatestCurrenciesResponseModel>(response);
+            curTr = JsonConvert.DeserializeObject<GetLatestCurrenciesResponseModel>(response);            
 
             return View(curTr);
         }
