@@ -1,5 +1,7 @@
-﻿using CurrencyExchangeApi.Models;
+﻿using CurrencyExchangeApi.Data;
+using CurrencyExchangeApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace CurrencyExchangeApi.Controllers
@@ -26,16 +28,18 @@ namespace CurrencyExchangeApi.Controllers
         [HttpPost]
         public async Task<ActionResult> ShowUser(IFormCollection form)
         {
-            CurrencyTransactionModel curTr = new();
 
             string From = form["txtFrom"];
             string To = form["txtTo"];
             int Amount = Convert.ToInt32(form["txtAmount"]);
 
-            //ResponseHandler responseHandler = new();
-            //var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);
+            ResponseHandler responseHandler = new();
+            var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);
 
-            return View();
+            GetLatestCurrenciesResponseModel curTr = new();
+            curTr = JsonConvert.DeserializeObject<GetLatestCurrenciesResponseModel>(response);
+
+            return View(curTr);
         }
 
         public IActionResult Privacy()
