@@ -1,4 +1,11 @@
-﻿namespace CurrencyExchangeApi.Controllers
+﻿using CurrencyExchangeApi.Data;
+using CurrencyExchangeApi.Models;
+using CurrencyExchangeApi.Models.ResponseModels;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Diagnostics;
+
+namespace CurrencyExchangeApi.Controllers
 {
     public class HomeController : Controller
     {
