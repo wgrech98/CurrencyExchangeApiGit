@@ -29,7 +29,6 @@ namespace CurrencyExchangeApi.Controllers
         [HttpPost]
         public async Task<ActionResult> ShowUser(IFormCollection form)
         {
-
             string From = form["txtFrom"];
             string To = form["txtTo"];
             int Amount = Convert.ToInt32(form["txtAmount"]);
@@ -37,8 +36,8 @@ namespace CurrencyExchangeApi.Controllers
             ResponseHandler responseHandler = new();
             var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);
 
-            GetLatestCurrenciesResponseModel curTr = new();
-            curTr = JsonConvert.DeserializeObject<GetLatestCurrenciesResponseModel>(response);
+            CurrencyConversionResponseModel curTr = new();
+            curTr = JsonConvert.DeserializeObject<CurrencyConversionResponseModel>(response);
 
             return View(curTr);
         }
