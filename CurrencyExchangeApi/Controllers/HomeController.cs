@@ -22,7 +22,6 @@
         [HttpPost]
         public async Task<ActionResult> ShowUser(IFormCollection form)
         {
-            CurrencyTransactionModel curTr = new();
 
             string From = form["txtFrom"];
             string To = form["txtTo"];
@@ -34,7 +33,7 @@
             GetLatestCurrenciesResponseModel curTr = new();
             curTr = JsonConvert.DeserializeObject<GetLatestCurrenciesResponseModel>(response);
 
-            return View();
+            return View(curTr);
         }
 
         public IActionResult Privacy()
