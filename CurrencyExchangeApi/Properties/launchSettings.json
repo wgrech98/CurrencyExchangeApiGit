@@ -11,7 +11,7 @@
     "CurrencyExchangeApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7284;http://localhost:5284",
+      "applicationUrl": "http://localhost:10493",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

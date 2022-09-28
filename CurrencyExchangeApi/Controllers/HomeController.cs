@@ -11,6 +11,11 @@ namespace CurrencyExchangeApi.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private UserTransactionDataModel transaction;
+
+        private CurrencyConversionResponseModel curTr;
+
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -27,7 +32,7 @@ namespace CurrencyExchangeApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ShowUser(IFormCollection form)
+        public async Task<ActionResult> ConvertCurrency(IFormCollection form)
         {
             string From = form["txtFrom"];
             string To = form["txtTo"];
@@ -36,10 +41,23 @@ namespace CurrencyExchangeApi.Controllers
             ResponseHandler responseHandler = new();
             var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);
 
-            CurrencyConversionResponseModel curTr = new();
             curTr = JsonConvert.DeserializeObject<CurrencyConversionResponseModel>(response);
 
-            return View(curTr);
+            //transaction.UserId = 
+            transaction.To = curTr.query.To;
+            transaction.From = curTr.query.From;
+            transaction.Amount = curTr.query.Amount;
+            transaction.ConvertedAmount = curTr.result;
+
+            return View(transaction);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ShowUserTransactions()
+        {        
+                      
+
+            return View(transaction);
         }
 
         public IActionResult Privacy()

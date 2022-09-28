@@ -7,7 +7,7 @@ namespace CurrencyExchangeApi.Models
         [Key]
         public int? TransactionId { get; set; }
 
-        public UserDataModel? User { get; set; }
+        public UserModel? User { get; set; }
 
         public int? UserId { get; set; }
 

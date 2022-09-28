@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CurrencyExchangeApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CurrencyExchangeApi.Data
 {
@@ -23,10 +24,8 @@ namespace CurrencyExchangeApi.Data
         //    base.OnModelCreating(modelBuilder);
         //}
 
-        //public DbSet<Actor> Actors { get; set; }
-        //public DbSet<Movie> Movies { get; set; }
-        //public DbSet<Actor_Movie> Actors_Movies { get; set; }
-        //public DbSet<Cinema> Cinemas { get; set; }
+        public DbSet<UserModel> Users { get; set; }
+        public DbSet<UserTransactionDataModel> Transactions { get; set; }
 
     }
 }
