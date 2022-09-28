@@ -15,6 +15,14 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Models\ReponseModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\ReponseModels\" />
+  </ItemGroup>
 </Project>

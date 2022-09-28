@@ -12,6 +12,10 @@
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"https://api.apilayer.com/fixer/convert?to={to}&from={from}&amount={amount}"),
+                Headers =
+            {
+                { "apikey", "9z4by92V1uV1b77aRZoOrBH4FizKI5iq" }               
+            }
 
             };
 
