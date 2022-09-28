@@ -1,8 +1,4 @@
-﻿using CurrencyExchangeApi.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-
-namespace CurrencyExchangeApi.Controllers
+﻿namespace CurrencyExchangeApi.Controllers
 {
     public class HomeController : Controller
     {
@@ -32,8 +28,11 @@ namespace CurrencyExchangeApi.Controllers
             string To = form["txtTo"];
             int Amount = Convert.ToInt32(form["txtAmount"]);
 
-            //ResponseHandler responseHandler = new();
-            //var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);
+            ResponseHandler responseHandler = new();
+            var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);
+
+            GetLatestCurrenciesResponseModel curTr = new();
+            curTr = JsonConvert.DeserializeObject<GetLatestCurrenciesResponseModel>(response);
 
             return View();
         }
