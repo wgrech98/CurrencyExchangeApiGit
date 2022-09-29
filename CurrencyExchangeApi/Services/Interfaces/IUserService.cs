@@ -1,17 +1,16 @@
-﻿using System;
-using CurrencyExchangeApi.Models;
+﻿using CurrencyExchangeApi.Models;
 
 namespace CurrencyExchangeApi.Services.Interfaces
 {
     public interface IUserService
     {
-        IEnumerable<UserModel> GetAllUsers();
+        IEnumerable<ApplicationUserModel> GetAllUsers();
 
-        UserModel Create(UserModel user);
+        ApplicationUserModel Create(ApplicationUserModel user);
 
-        UserModel GetById(int id);
+        //ApplicationUserModel GetById(int id);
 
-        UserModel GetByUserName(string userName);
+        ApplicationUserModel GetByUserName(string userName);
     }
 }
 

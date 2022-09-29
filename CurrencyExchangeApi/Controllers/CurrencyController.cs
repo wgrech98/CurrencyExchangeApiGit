@@ -3,14 +3,12 @@ using CurrencyExchangeApi.Models;
 using CurrencyExchangeApi.Models.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Diagnostics;
 
 namespace CurrencyExchangeApi.Controllers
 {
-    public class HomeController : Controller
+    public class CurrencyController : Controller
     {
-
-        private TransactionItemModel transaction;
+        private TransactionModel transaction;
 
         private CurrencyConversionResponseModel curTr;
 
@@ -37,30 +35,15 @@ namespace CurrencyExchangeApi.Controllers
 
             curTr = JsonConvert.DeserializeObject<CurrencyConversionResponseModel>(response);
 
-            //transaction.UserId = 
-            //transaction.To = curTr.query.To;
-            //transaction.From = curTr.query.From;
-            //transaction.Amount = curTr.query.Amount;
-            //transaction.ConvertedAmount = curTr.result;
-
-            return View();
+            return View(curTr);
         }
 
-        [HttpGet]
-        public async Task<ActionResult> ShowUserTransactions()
-        {
-            return View(transaction);
-        }
+        //[HttpGet]
+        //public async Task<ActionResult> ShowUserTransactions()
+        //{
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //    return View(transaction);
+        //}
     }
 }

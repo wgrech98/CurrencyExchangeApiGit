@@ -1,15 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CurrencyExchangeApi.Models
 {
-    public class UserTransactionDataModel
+    public class TransactionItemModel
     {
         [Key]
-        public int? TransactionId { get; set; }
-
-        public UserModel? User { get; set; }
-
-        public int? UserId { get; set; }
+        public int Id { get; set; }
 
         public string? To { get; set; }
 
@@ -18,6 +15,10 @@ namespace CurrencyExchangeApi.Models
         public string? Amount { get; set; }
 
         public string? ConvertedAmount { get; set; }
+
+        public int? TransactionId { get; set; }
+
+        [ForeignKey("TransactionId")]
+        public TransactionModel? Transaction { get; set; }
     }
 }
-

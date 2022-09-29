@@ -1,4 +1,5 @@
 ﻿namespace CurrencyExchangeApi.Data
+
 {
     //Response Handler class in the Data Access Layer folder
     public class ResponseHandler

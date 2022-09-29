@@ -24,8 +24,10 @@ namespace CurrencyExchangeApi.Data
         //    base.OnModelCreating(modelBuilder);
         //}
 
-        public DbSet<UserModel> Users { get; set; }
-        public DbSet<UserTransactionDataModel> Transactions { get; set; }
+        public DbSet<CurrencyModel> Currencies { get; set; }
 
+        public DbSet<TransactionModel> Transactions { get; set; }
+        public DbSet<TransactionItemModel> TransactionItems { get; set; }
     }
+
 }
