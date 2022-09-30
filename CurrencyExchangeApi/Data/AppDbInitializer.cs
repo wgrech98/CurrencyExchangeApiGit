@@ -110,13 +110,13 @@ namespace CurrencyExchangeApi.Data
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
 
                 //Users
-                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUserModel>>();
+                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
                 string adminUserEmail = "admin@etickets.com";
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if (adminUser == null)
                 {
-                    var newAdminUser = new ApplicationUserModel()
+                    var newAdminUser = new ApplicationUser()
                     {
                         FullName = "Admin User",
                         UserName = "admin-user",
@@ -133,7 +133,7 @@ namespace CurrencyExchangeApi.Data
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
                 if (appUser == null)
                 {
-                    var newAppUser = new ApplicationUserModel()
+                    var newAppUser = new ApplicationUser()
                     {
                         FullName = "Application User",
                         UserName = "app-user",

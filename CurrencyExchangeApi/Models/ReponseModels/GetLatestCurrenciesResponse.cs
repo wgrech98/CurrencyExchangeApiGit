@@ -1,6 +1,6 @@
 ﻿namespace CurrencyExchangeApi.Models.ResponseModels
 {
-    public class GetLatestCurrenciesResponseModel
+    public class GetLatestCurrenciesResponse
     {
 
         public Rates Rates { get; set; }

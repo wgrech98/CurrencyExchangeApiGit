@@ -1,12 +1,12 @@
-﻿namespace CurrencyExchangeApi.Models.ResponseModels 
+﻿namespace CurrencyExchangeApi.Models.ResponseModels
 {
-    public class CurrencyConversionResponseModel
+    public class CurrencyConversionResponse
     {
         public Query? query { get; set; }
 
         public Info? info { get; set; }
 
-        public string? result { get; set; } 
+        public string? result { get; set; }
     }
 
     public class Query

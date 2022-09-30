@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CurrencyExchangeApi.Models
 {
-    public class ApplicationUserModel : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         [Display(Name = "Full name")]
         public string FullName { get; set; }

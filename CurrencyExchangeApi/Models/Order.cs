@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CurrencyExchangeApi.Models
 {
-    public class TransactionModel
+    public class Order
     {
         [Key]
         public int Id { get; set; }
@@ -13,9 +13,9 @@ namespace CurrencyExchangeApi.Models
         public string UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public ApplicationUserModel? User { get; set; }
+        public ApplicationUser? User { get; set; }
 
-        public List<TransactionItemModel> OrderItems { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
     }
 }
 

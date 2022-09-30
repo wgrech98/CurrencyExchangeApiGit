@@ -10,10 +10,7 @@ namespace CurrencyExchangeApi.Controllers
     public class HomeController : Controller
     {
 
-        private TransactionItemModel transaction;
-
-        private CurrencyConversionResponseModel curTr;
-
+        private CurrencyConversionResponse curTr;
 
         public ActionResult Index()
         {
@@ -35,7 +32,7 @@ namespace CurrencyExchangeApi.Controllers
             ResponseHandler responseHandler = new();
             var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);
 
-            curTr = JsonConvert.DeserializeObject<CurrencyConversionResponseModel>(response);
+            curTr = JsonConvert.DeserializeObject<CurrencyConversionResponse>(response);
 
             //transaction.UserId = 
             //transaction.To = curTr.query.To;
@@ -49,7 +46,7 @@ namespace CurrencyExchangeApi.Controllers
         [HttpGet]
         public async Task<ActionResult> ShowUserTransactions()
         {
-            return View(transaction);
+            return View();
         }
 
         public IActionResult Privacy()
@@ -60,7 +57,7 @@ namespace CurrencyExchangeApi.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorView { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

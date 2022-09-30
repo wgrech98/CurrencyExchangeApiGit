@@ -9,12 +9,20 @@
   <ItemGroup>
     <Compile Remove="Data\NewFolder1\**" />
     <Compile Remove="Data\NewFolder\**" />
+    <Compile Remove="Models\NewFolder1\**" />
+    <Compile Remove="Models\NewFolder\**" />
     <Content Remove="Data\NewFolder1\**" />
     <Content Remove="Data\NewFolder\**" />
+    <Content Remove="Models\NewFolder1\**" />
+    <Content Remove="Models\NewFolder\**" />
     <EmbeddedResource Remove="Data\NewFolder1\**" />
     <EmbeddedResource Remove="Data\NewFolder\**" />
+    <EmbeddedResource Remove="Models\NewFolder1\**" />
+    <EmbeddedResource Remove="Models\NewFolder\**" />
     <None Remove="Data\NewFolder1\**" />
     <None Remove="Data\NewFolder\**" />
+    <None Remove="Models\NewFolder1\**" />
+    <None Remove="Models\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,9 +53,5 @@
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Swashbuckle.AspNetCore" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\ReponseModels\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 namespace CurrencyExchangeApi.Models
 {
-    public class CurrencyModel
+    public class Currencies
     {
         [Key]
         public int? CurrencyId { get; set; }
