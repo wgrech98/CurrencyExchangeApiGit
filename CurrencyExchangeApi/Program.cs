@@ -43,10 +43,11 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
-
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.UseEndpoints(endpoints =>
 {
@@ -54,8 +55,6 @@ app.UseEndpoints(endpoints =>
         name: "default",
         pattern: "{controller=Orders}/{action=Index}/{id?}");
 });
-
-
 
 app.Run();
 
