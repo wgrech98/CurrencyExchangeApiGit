@@ -15,7 +15,7 @@ namespace CurrencyExchangeApi.Data.Cart
             _context = context;
         }
 
-        public static OrderCart GetShoppingCart(IServiceProvider services)
+        public static OrderCart GetOrderCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
             var context = services.GetService<AppDbContext>();

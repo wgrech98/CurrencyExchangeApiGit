@@ -1,4 +1,10 @@
 using CurrencyExchangeApi.Data;
+using CurrencyExchangeApi.Data.Cart;
+using CurrencyExchangeApi.Models;
+using CurrencyExchangeApi.Services;
+using CurrencyExchangeApi.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +14,20 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
-//builder.Services.AddScoped<IActorsService, ActorsService>();
+
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(sc => OrderCart.GetOrderCart(sc));
+
+//Authentication and authorization
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+});
 
 var app = builder.Build();
 
@@ -29,7 +48,9 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Orders}/{action=AddItemToOrderCart}/{id?}");
 
 app.Run();
+
+AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
