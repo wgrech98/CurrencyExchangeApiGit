@@ -8,7 +8,7 @@ namespace CurrencyExchangeApi.Services.Interfaces
         Task StoreOrderAsync(List<OrderCartItem> items, string userId, string userEmailAddress);
         Task<CurrencyConversion> GetOrderByIdAsync(int id);
         Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId, string userRole);
-        Task StoreCurrencyConversionAsync(CurrencyConversionResponse curTr);
+        Task<CurrencyConversion> StoreCurrencyConversionAsync(CurrencyConversionResponse curTr);  
     }
 }
 

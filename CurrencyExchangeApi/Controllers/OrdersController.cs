@@ -11,13 +11,13 @@ namespace CurrencyExchangeApi.Controllers
 {
     public class OrdersController : Controller
     {
-        private readonly OrderCart _orderList;
+        private readonly OrderCart _orderCart;
         private readonly IOrdersService _ordersService;
         private CurrencyConversionResponse curTr;
 
         public OrdersController(OrderCart orderList, IOrdersService OrdersService)
         {
-            _orderList = orderList;
+            _orderCart = orderList;
             _ordersService = OrdersService;
         }
 
@@ -32,13 +32,13 @@ namespace CurrencyExchangeApi.Controllers
 
         public IActionResult orderCart()
         {
-            var items = _orderList.GetShoppingCartItems();
-            _orderList.OrderCartItems = items;
+            var items = _orderCart.GetShoppingCartItems();
+            _orderCart.OrderCartItems = items;
 
             var response = new OrderCartVM()
             {
-                OrderCart = _orderList,
-                ShoppingCartTotal = _orderList.GetShoppingCartTotal()
+                OrderCart = _orderCart,
+                OrderCartTotal = _orderCart.GetShoppingCartTotal()
             };
 
             return View(response);
@@ -55,7 +55,9 @@ namespace CurrencyExchangeApi.Controllers
 
             curTr = JsonConvert.DeserializeObject<CurrencyConversionResponse>(response);
 
-            _ordersService.StoreCurrencyConversionAsync(curTr);
+            var currencyConversion = await _ordersService.StoreCurrencyConversionAsync(curTr);
+
+            _orderCart.AddItemToCart(currencyConversion);
 
             return RedirectToAction(nameof(orderCart));
         }
@@ -66,19 +68,19 @@ namespace CurrencyExchangeApi.Controllers
 
             if (item != null)
             {
-                _orderList.RemoveItemFromCart(item);
+                _orderCart.RemoveItemFromCart(item);
             }
             return RedirectToAction(nameof(orderCart));
         }
 
         public async Task<IActionResult> CompleteOrder()
         {
-            var items = _orderList.GetShoppingCartItems();
+            var items = _orderCart.GetShoppingCartItems();
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
 
             await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
-            await _orderList.ClearShoppingCartAsync();
+            await _orderCart.ClearShoppingCartAsync();
 
             return View("OrderCompleted");
         }

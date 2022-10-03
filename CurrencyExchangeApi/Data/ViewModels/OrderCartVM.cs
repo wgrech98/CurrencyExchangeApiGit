@@ -6,6 +6,6 @@ namespace CurrencyExchangeApi.Data.ViewModels
     {
         public OrderCart OrderCart { get; set; }
 
-        public double ShoppingCartTotal { get; set; }
+        public double OrderCartTotal { get; set; }
     }
 }

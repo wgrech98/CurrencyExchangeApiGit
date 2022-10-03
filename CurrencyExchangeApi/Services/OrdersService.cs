@@ -34,7 +34,7 @@ namespace CurrencyExchangeApi.Services
             return CurrencyConversionDetails;
         }
 
-        public async Task StoreCurrencyConversionAsync(CurrencyConversionResponse curTr)
+        public async Task<CurrencyConversion> StoreCurrencyConversionAsync(CurrencyConversionResponse curTr)
         {
             var orderItem = new CurrencyConversion()
             {
@@ -43,9 +43,12 @@ namespace CurrencyExchangeApi.Services
                 ConversionAmount = Double.Parse(curTr.query.Amount),
                 ConversionResult = Double.Parse(curTr.result)
             };
+            return orderItem;
+
             await _context.CurrenciesConversion.AddAsync(orderItem);
 
             await _context.SaveChangesAsync();
+
         }
 
         public async Task StoreOrderAsync(List<OrderCartItem> items, string userId, string userEmailAddress)
