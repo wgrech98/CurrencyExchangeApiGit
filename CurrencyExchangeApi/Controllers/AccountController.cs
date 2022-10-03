@@ -5,18 +5,22 @@ using CurrencyExchangeApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Caching.Memory;
 
 namespace CurrencyExchangeApi.Controllers
 {
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger<AccountController> _logger;
+        private readonly IMemoryCache _memoryCache;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly AppDbContext _context;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, AppDbContext context)
+        public AccountController(IMemoryCache memoryCache, ILogger<AccountController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, AppDbContext context)
         {
+            _memoryCache = memoryCache;
+            _logger = logger;
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
@@ -25,8 +29,22 @@ namespace CurrencyExchangeApi.Controllers
 
         public async Task<IActionResult> Users()
         {
-            var users = await _context.Users.ToListAsync();
-            return View(users);
+            var cacheKey = "usersList";
+            //checks if cache entries exists
+            if (!_memoryCache.TryGetValue(cacheKey, out List<ApplicationUser> usersList))
+            {
+                usersList = await _context.Users.ToListAsync();
+                //setting up cache options
+                var cacheExpiryOptions = new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpiration = DateTime.Now.AddSeconds(50),
+                    Priority = CacheItemPriority.High,
+                    SlidingExpiration = TimeSpan.FromSeconds(20)
+                };
+                //setting cache entries
+                _memoryCache.Set(cacheKey, usersList, cacheExpiryOptions);
+            }
+            return View(usersList);
         }
 
 
@@ -47,6 +65,8 @@ namespace CurrencyExchangeApi.Controllers
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index", "Orders");
+                        //logging login information
+                        _logger.LogInformation("A user with the email: {userEmail} logged in at {loginTime}", loginVM.EmailAddress, DateTime.Now);
                     }
                 }
                 TempData["Error"] = "Wrong credentials. Please, try again!";
@@ -81,7 +101,10 @@ namespace CurrencyExchangeApi.Controllers
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
 
             if (newUserResponse.Succeeded)
+            {
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+                _logger.LogInformation("A user with the email: {userEmail} was created at {loginTime}", registerVM.EmailAddress, DateTime.Now);
+            }
 
             return View("RegisterCompleted");
         }

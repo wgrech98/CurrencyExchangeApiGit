@@ -28,7 +28,7 @@
                     <tr>
                         <td class="align-middle">@item.CurrencyConversion.From</td>
                         <td class="align-middle">@item.CurrencyConversion.To</td>
-                        <td class="align-middle">@item.CurrencyConversion.ConversionResult.ToString("c")</td>
+                        <td class="align-middle">@item.CurrencyConversion.ConversionAmount.ToString("c")</td>
                         <td class="align-middle">@item.CurrencyConversion.ConversionResult.ToString("c")</td>                        
                         <td class="align-middle">@((item.CurrencyConversion.ConversionResult).ToString("c"))</td>
                         <td class="align-middle">
@@ -59,7 +59,7 @@
                     </a>*@
                 <div id="paypal-btn"></div>
                 <span style="padding:5px"></span>
-                <a class="btn btn-outline-success" asp-controller="Orders" asp-action="Index">
+                <a class="btn btn-outline-success" asp-controller="Orders" asp-action="AddItemToOrderCart">
                     Add more items
                 </a>
             </div>

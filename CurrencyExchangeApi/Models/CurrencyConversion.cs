@@ -11,7 +11,7 @@ namespace CurrencyExchangeApi.Models
 
         public string? From { get; set; }
 
-        public double? ConversionAmount { get; set; }
+        public double ConversionAmount { get; set; }
 
         public double ConversionResult { get; set; }
     }
