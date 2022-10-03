@@ -18,7 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 builder.Services.AddScoped<IOrdersService, OrdersService>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddScoped(sc => OrderCart.GetOrderCart(sc));
+builder.Services.AddScoped(oc => OrderCart.GetOrderCart(oc));
 
 //Authentication and authorization
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
@@ -56,7 +56,8 @@ app.UseEndpoints(endpoints =>
         pattern: "{controller=Orders}/{action=Index}/{id?}");
 });
 
+AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
+
 app.Run();
 
-AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 

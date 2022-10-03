@@ -111,7 +111,7 @@ namespace CurrencyExchangeApi.Data
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                string adminUserEmail = "admin@etickets.com";
+                string adminUserEmail = "admin@curexc.com";
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if (adminUser == null)
@@ -123,12 +123,12 @@ namespace CurrencyExchangeApi.Data
                         Email = adminUserEmail,
                         EmailConfirmed = true
                     };
-                    await userManager.CreateAsync(newAdminUser, "Coding@1234?");
+                    await userManager.CreateAsync(newAdminUser, "Password12?");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 
 
-                string appUserEmail = "user@etickets.com";
+                string appUserEmail = "user@curexc.com";
 
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
                 if (appUser == null)
@@ -140,7 +140,23 @@ namespace CurrencyExchangeApi.Data
                         Email = appUserEmail,
                         EmailConfirmed = true
                     };
-                    await userManager.CreateAsync(newAppUser, "Coding@1234?");
+                    await userManager.CreateAsync(newAppUser, "NotPassword12?");
+                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+                }
+
+                string appUserEmail1 = "user@curexc.com";
+
+                var appUser1 = await userManager.FindByEmailAsync(appUserEmail);
+                if (appUser1 == null)
+                {
+                    var newAppUser = new ApplicationUser()
+                    {
+                        FullName = "Application User 1",
+                        UserName = "app-user 1",
+                        Email = appUserEmail1,
+                        EmailConfirmed = true
+                    };
+                    await userManager.CreateAsync(newAppUser, "NotPassword123?");
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }

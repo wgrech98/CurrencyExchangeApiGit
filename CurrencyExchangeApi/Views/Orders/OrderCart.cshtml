@@ -35,12 +35,7 @@
                             <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromOrderCart"
                                asp-route-id="@item.CurrencyConversion.Id">
                                 <i class="bi bi-cart-dash"></i>
-                            </a>
-                            |
-                            <a class="text-success" asp-controller="Orders" asp-action="AddItemToOrderCart"
-                               asp-route-id="@item.CurrencyConversion.Id">
-                                <i class="bi bi-cart-plus"></i>
-                            </a>
+                            </a>                      
                         </td>
                     </tr>
                 }
@@ -64,22 +59,22 @@
                     </a>*@
                 <div id="paypal-btn"></div>
                 <span style="padding:5px"></span>
-                <a class="btn btn-outline-success" asp-controller="Orders" asp-action="AddItemToOrderCart">
+                <a class="btn btn-outline-success" asp-controller="Orders" asp-action="Index">
                     Add more items
                 </a>
             </div>
         </div>
-            <div class="text-right">
-                <div class="btn-group">
-                    @*<a class="btn btn-outline-primary" asp-action="CompleteOrder">
-                            Complete order
-                        </a>*@
-                    <div id="paypal-btn"></div>
-                    <span style="padding:5px"></span>
-                    <a class="btn btn-outline-success" asp-controller="Orders" asp-action="CompleteOrder">
-                        Complete Order
-                    </a>
-                </div>
+        <div class="text-right">
+            <div class="btn-group">
+                @*<a class="btn btn-outline-primary" asp-action="CompleteOrder">
+                        Complete order
+                    </a>*@
+                <div id="paypal-btn"></div>
+                <span style="padding:5px"></span>
+                <a class="btn btn-outline-success" asp-controller="Orders" asp-action="CompleteOrder">
+                    Complete Order
+                </a>
+            </div>
         </div>
     </div>
 </div>

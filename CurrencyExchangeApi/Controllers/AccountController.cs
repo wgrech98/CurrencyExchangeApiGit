@@ -38,7 +38,7 @@ namespace CurrencyExchangeApi.Controllers
             if (!ModelState.IsValid) return View(loginVM);
 
             var user = await _userManager.FindByEmailAsync(loginVM.EmailAddress);
-            if(user != null)
+            if (user != null)
             {
                 var passwordCheck = await _userManager.CheckPasswordAsync(user, loginVM.Password);
                 if (passwordCheck)
@@ -46,7 +46,7 @@ namespace CurrencyExchangeApi.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Movies");
+                        return RedirectToAction("Index", "Orders");
                     }
                 }
                 TempData["Error"] = "Wrong credentials. Please, try again!";
@@ -66,7 +66,7 @@ namespace CurrencyExchangeApi.Controllers
             if (!ModelState.IsValid) return View(registerVM);
 
             var user = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
-            if(user != null)
+            if (user != null)
             {
                 TempData["Error"] = "This email address is already in use";
                 return View(registerVM);
@@ -90,7 +90,7 @@ namespace CurrencyExchangeApi.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("AddItemToCart", "Orders");
+            return RedirectToAction("Index", "Orders");
         }
 
         public IActionResult AccessDenied(string ReturnUrl)
