@@ -50,6 +50,11 @@ The login details for a demo user and admin account are available in AppDbInitia
 1. Can view a list of all completed orders along with the username that submitted the order
 2. Can view a list of existing users - Click on the users item in the navbar
 
+# Logging and Caching
+
+Logging was used to log:
+
+Caching was used 
 
 
 
