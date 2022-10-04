@@ -6,7 +6,6 @@ This is a readme file for the implementation of the Currency Exchange API
 ## Controllers
 ### Orders controller
 Hosts actions related to orders/currency exchange transactions
-
 ### Accounts controller
 Hosts actions related to Accounts management
 
@@ -38,20 +37,21 @@ To run the solution, clone the solution and set up a local sql server database. 
 # Guidance on the usage of the solution
 The solution greets the user with the login screen. There are two types of Accounts - User and Admin
 
+You can also use the solution without logging in to a user or Admin, however, you cannot complete an order in this scenario
+
 The login details for a demo user and admin account are available in AppDbInitializer.cs
 
 #User View
-
 1. Can submit a new currency exchange transaction (can submit more than one currency exchange transaction in one order) - Click on the CurrencyExchange item in the Navbar
 2. Can view the current order - Click on the basket
 3. Can view a list of that user's completed orders - Click on the Orders Item in the Navbar
 
 #Admin View
-1. Can view a list of all completed orders
-2. Can view the list of existing users in the system
-3. Properties for the Register page - RegisterVM.cs
+1. Can view a list of all completed orders along with the username that submitted the order
+2. Can view a list of existing users - Click on the users item in the navbar
 
-You can also use the solution without logging in to a user or Admin, however, you cannot complete an order in this scenario
+
+
 
 
 
