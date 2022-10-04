@@ -41,12 +41,12 @@ You can also use the solution without logging in to a user or Admin, however, yo
 
 The login details for a demo user and admin account are available in AppDbInitializer.cs
 
-#User View
+## User View
 1. Can submit a new currency exchange transaction (can submit more than one currency exchange transaction in one order) - Click on the CurrencyExchange item in the Navbar
 2. Can view the current order - Click on the basket
 3. Can view a list of that user's completed orders - Click on the Orders Item in the Navbar
 
-#Admin View
+## Admin View
 1. Can view a list of all completed orders along with the username that submitted the order
 2. Can view a list of existing users - Click on the users item in the navbar
 
