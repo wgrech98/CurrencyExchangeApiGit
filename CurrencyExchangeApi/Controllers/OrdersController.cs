@@ -68,6 +68,7 @@ namespace CurrencyExchangeApi.Controllers
             return View();
         }
 
+        [ResponseCache(Duration = 1800, Location = ResponseCacheLocation.Any)]
         [HttpPost]
         public async Task<IActionResult> AddItemToOrderCart(IFormCollection form)
         {
@@ -75,7 +76,7 @@ namespace CurrencyExchangeApi.Controllers
             string To = form["txtTo"];
             int Amount = Convert.ToInt32(form["txtAmount"]);
 
-            _logger.LogInformation("Currency conversion request details: From {From} To {To} For the Amount: {Amount)", From, To, Amount);
+            _logger.LogInformation("Currency conversion request details: From {From} To {To}", From, To);
 
             ResponseHandler responseHandler = new();
             var response = await responseHandler.ConvertCurrencyResponse(From, To, Amount);

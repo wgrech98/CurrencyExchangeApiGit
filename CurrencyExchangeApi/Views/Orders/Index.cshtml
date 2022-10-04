@@ -16,6 +16,7 @@
                     <th>Order ID</th>
                     <th>From</th>
                     <th>To</th>
+                    <th>Original Amount</th>
                     <th>Conversion Result</th>
                     <th>Total</th>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
@@ -48,6 +49,18 @@
                                 <li>
                                     <div class="alert alert-info" role="alert">
                                         @item.To
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </td>
+                    <td class="align-middle">
+                        <ul style="list-style-type:none">
+                            @foreach (var item in order.OrderItems)
+                            {
+                                <li>
+                                    <div class="alert alert-info" role="alert">
+                                            @item.Amount.ToString("c")
                                     </div>
                                 </li>
                             }

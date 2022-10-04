@@ -8,7 +8,7 @@
     <title>Index</title>
 </head>
 <body>
-    <form method="post" action="AddItemToOrderCart">
+@*    <form method="post" action="AddItemToOrderCart">
         <table>
             <tr>
                 <td>From Currency</td>
@@ -27,24 +27,57 @@
                 <td><input type="submit" /></td>
             </tr>
         </table>
-    </form>
-    <form method="post" action="AddItemToOrderCart">
-        <h1>Login Form</h1>
+    </form>*@
+
+@*    <form method="post" action="AddItemToOrderCart">
+        <h1>Currency Exchange Form</h1>
           <div class="formcontainer">
              <hr/>
               <div class="container">
                     <label for="txtFrom"><strong>From Currency</strong></label>
-                    <input type="text"  id="from_id" placeholder="EUR" name="txtFrom" required>
+                    <input type="text"  id="from_id" placeholder="e.g. EUR" name="txtFrom" required>
 
                     <label for="txtTo"><strong>To Currency</strong></label>
-                    <input type="text" id="to_id" placeholder="GBP" name="txtTo" required>
+                    <input type="text" id="to_id" placeholder="e.g. GBP" name="txtTo" required>
 
                      <label for="txtAmount"><strong>Amount</strong></label>
                     <input type="text"  id="amount_id" placeholder="Enter Amount to convert" name="txtAmount" required>
             </div>
           </div>
-          <button type="submit">Login</button>
-         </form>
+          <button type="submit">Submit Order</button>
+    </form>*@
+
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <p>
+                <h1>Currency Exchange Form</h1>
+            </p>          
+
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <form method="post" action="AddItemToOrderCart">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group">
+                            <label for="txtFrom" class="control-label"><strong>From Currency</strong></label>
+                            <input type="text" class="form-control" id="from_id" placeholder="e.g. EUR" name="txtFrom" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTo" class="control-label"><strong>To Currency</strong></label>
+                            <input type="text" id="to_id" placeholder="e.g. GBP" name="txtTo" required class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtAmount" class="control-label"><strong>Amount</strong></label>
+                            <input type="text" class="form-control" id="amount_id" placeholder="Enter Amount to convert" name="txtAmount" required>
+                        </div>
+                        <div class="form-group">
+                            <input id = "SubmitOrdBut" class="btn btn-outline-success float-right" type="submit" value="Submit Order" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

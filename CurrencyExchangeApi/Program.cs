@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddResponseCaching();
+
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
@@ -42,11 +44,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-
-app.UseStaticFiles();
 app.UseSession();
 
 app.UseRouting();
+
+app.UseResponseCaching();
+
 
 app.UseAuthentication();
 
@@ -57,7 +60,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Orders}/{action=Index}/{id?}");
+        pattern: "{controller=Account}/{action=Login}/{id?}");
 });
 
 AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
