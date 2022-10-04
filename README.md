@@ -53,8 +53,14 @@ The login details for a demo user and admin account are available in AppDbInitia
 # Logging and Caching
 
 Logging was used to log:
+* login attempts by existing users
+* Register a new account attempt
+* Currency Conversion attempts
 
-Caching was used 
+Caching was used to:
+* Cache the list of existing users in the system
+* Cache the orders of each user
+* The ResponseCache mechnanism was used to cache responses from the API Server. The Duration property will produce the max-age header, which we use to set the cache duration for 30 minutes (1800 seconds)
 
 
 
