@@ -10,7 +10,6 @@ namespace CurrencyExchangeApi.Data
         {
         }
 
-        public DbSet<Currencies> Currencies { get; set; }
         public DbSet<CurrencyConversion> CurrenciesConversion { get; set; }
 
         public DbSet<Order> Orders { get; set; }
