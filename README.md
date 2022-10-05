@@ -69,7 +69,7 @@ IP rate limiting is used to limit each client to 10 currency exchange trades per
 
 # Future Improvements
 * Design test cases
-* Add more currency exchange functionality e.g. get a list of all the available currencies along with their current rate of exchange (the API response model us already implemented)
+* Add more currency exchange functionality e.g. get a list of all the available currencies along with their current rate of exchange (the API response model is already implemented)
 * Reduce the amount of requests made to the API by implementing more caching capabilities e.g. cache currency rates and fetch from cache when a currency conversion request is made
 
 
