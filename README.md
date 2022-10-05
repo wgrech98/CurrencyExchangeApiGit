@@ -67,6 +67,11 @@ Caching is used to:
 # IP Rate Limiting
 IP rate limiting is used to limit each client to 10 currency exchange trades per hour. This limit is imposed on the "POST:/Orders/AddItemToOrderCart" endpoint which is the post action where the user submits a currency exchange transaction in the application. The configuration is done in the appsettings.json file
 
+# Future Improvements
+* Design test cases
+* Add more currency exchange functionality e.g. get a list of all the available currencies along with their current rate of exchange (the API response model us already implemented)
+* Reduce the amount of requests made to the API by implementing more caching capabilities e.g. cache currency rates and fetch from cache when a currency conversion request is made
+
 
 
 
